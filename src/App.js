@@ -1,24 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import MainPage from './components/MainPage'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Navbar } from 'react-bootstrap';
+import DetalhesJogador from './components/jogador/DetalhesJogador';
+import DetalhesTime from './components/time/DetalhesTime';
+import DetalhesJogo from './components/jogo/DetalhesJogo';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <main>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">
+          <img
+            alt=""
+            src="/logo.png"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{' '}
+                    Minha Partida FC
+                </Navbar.Brand>
+      </Navbar>
+      <section>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/jogador/:id" component={DetalhesJogador} />
+            <Route exact path="/time/:id" component={DetalhesTime} />
+            <Route exact path="/jogo/:id" component={DetalhesJogo} />
+            <Route path='/'>
+              <MainPage></MainPage>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </section>
+    </main>
   );
 }
 
